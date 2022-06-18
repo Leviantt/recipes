@@ -1,5 +1,6 @@
 export interface ingredient {
     original: string;
+    id: number;
 }
 
 export class Recipe {
