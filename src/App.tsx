@@ -12,16 +12,18 @@ import NotFound from './pages/NotFound';
 function App() {
   return (
       <Router>
-        <Navbar />
-        <Search />
-        <Category />
-        <Routes>
-          <Route path='/' element={<Home />}/>
-          <Route path='/cuisine/:category' element={<Cuisine />} />
-          <Route path='/search_result/:query' element={<SearchResult />} />
-          <Route path='/detailed_recipe/:id' element={<DetailedRecipe />} />
-          <Route path='/*' element={<NotFound />} />  
-        </Routes>
+        <div className='container'>
+          <Navbar />
+          <Search />
+          <Category />
+          <Routes>
+            <Route path='/' element={<Home />}/>
+            <Route path='/cuisine/:category' element={<Cuisine />} />
+            <Route path='/search_result/:query' element={<SearchResult />} />
+            <Route path='/detailed_recipe/:id' element={<DetailedRecipe />} />
+            <Route path='/*' element={<NotFound />} />  
+          </Routes>
+        </div>
       </Router>
     );
 }

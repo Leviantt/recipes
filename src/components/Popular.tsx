@@ -2,9 +2,9 @@ import React, { useEffect, useState } from 'react';
 import { Link } from 'react-router-dom';
 import { Splide, SplideSlide } from '@splidejs/react-splide';
 import '@splidejs/react-splide/css';
-import { GrRefresh } from 'react-icons/gr';
 import { Recipe } from '../Recipe';
-import HomeCard from './HomeCard';
+import PrimaryCard from './PrimaryCard';
+import Refresh from './Refresh';
 
 
 
@@ -13,6 +13,15 @@ const KEY_POPULAR = 'local-popular';
 
 function Popular() {
     const [popular, setPopular] = useState<Recipe[]>([]);
+    const [width, setWidth] = useState(window.innerWidth);
+    useEffect(() => {
+        window.addEventListener('resize', handleResize);
+        return () => window.removeEventListener('resize', handleResize);
+    }, []);
+    const handleResize = () => {
+        setWidth(window.innerWidth);
+    }
+    
     async function getPopular() {
         const localPopular = localStorage.getItem(KEY_POPULAR);
         if(localPopular) {
@@ -32,25 +41,27 @@ function Popular() {
         localStorage.removeItem(KEY_POPULAR);
         getPopular();
     }
+    const calculateSlidesPerPage = (width: number): number => {
+        return width < 900 ? 1 : 2;
+    }
     return (
-        <div className='wrapper'>
+        <div>
             <h3>Popular picks</h3>
-            <span className='btn-refresh' onClick={handleRefresh}>
-                <GrRefresh />
-            </span>
+            <Refresh handleRefresh={handleRefresh}/>
             <Splide
                 options={{
-                    perPage: 2,
+                    perPage: calculateSlidesPerPage(width),
                     pagination: false,
                     drag: 'free',
-                    gap: '4rem'
+                    gap: '4em',
+                    
                 }}
             >
                 {popular.map((recipe: Recipe) => {
                     return (
                         <SplideSlide key={recipe.id}>
                             <Link to={`/detailed_recipe/${recipe.id}`}>
-                                <HomeCard recipe={recipe}/>
+                                <PrimaryCard recipe={recipe}/>
                             </Link>
                         </SplideSlide>
                     )
