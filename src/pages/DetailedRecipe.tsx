@@ -1,6 +1,6 @@
 import React, { useEffect, useState } from 'react';
 import { useParams} from 'react-router-dom';
-import { Recipe } from '../Recipe';
+import { Recipe } from '../models/Recipe';
 
 function DetailedRecipe() {
     const [detailedRecipe, setDetailedRecipe] = useState<Recipe>();

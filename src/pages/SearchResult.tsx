@@ -1,7 +1,7 @@
 import React, {useState, useEffect} from 'react';
 import { useParams, Link } from 'react-router-dom';
 import SecondaryCard from '../components/SecondaryCard';
-import { Recipe } from '../Recipe';
+import { Recipe } from '../models/Recipe';
 
 const baseURL = `https://api.spoonacular.com/recipes/complexSearch?apiKey=${process.env.REACT_APP_API_KEY}`;
 

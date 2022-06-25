@@ -2,7 +2,7 @@ import React, { useEffect, useState } from 'react';
 import { Link } from 'react-router-dom';
 import { Splide, SplideSlide } from '@splidejs/react-splide';
 import '@splidejs/react-splide/css';
-import { Recipe } from '../Recipe';
+import { Recipe } from '../models/Recipe';
 import PrimaryCard from './PrimaryCard';
 import Refresh from './Refresh';
 
